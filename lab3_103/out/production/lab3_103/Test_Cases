@@ -1,0 +1,52 @@
+/**
+ * The Test Cases of lab 1 for CPE 103
+ *
+ * @author David Ritter
+ * @version Lab 1
+**/
+
+import java.util.Iterator;
+
+public class TakeIterator<T> implements Iterator<T>, Iterable<T>
+{
+    Iterator<T> iter;
+    int numToTake;
+    T current_val;
+    int current_index = 0;
+
+    public TakeIterator(int numToTake, Iterator<T> iter)
+    {
+        this.numToTake = numToTake;
+        this.iter = iter;
+    }
+
+    public Iterator<T> iterator()
+    {
+        return this;            //return the current iterator
+    }
+
+    public T next()
+    {
+        current_val = iter.next();
+        return current_val;
+    }
+
+    public boolean hasNext()
+    {
+        if(iter.hasNext() && current_index < numToTake)
+        {
+            current_index++;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void remove()
+    {
+        throw new UnsupportedOperationException();
+    }
+
+}
